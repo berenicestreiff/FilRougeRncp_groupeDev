@@ -1,7 +1,6 @@
 package com.mesEncheresV2.filRouge.metier;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -10,11 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+
+//serializbleindispensable?
+// protected et private entre basic user et professional User
+//Ext prop a t-im pour seule différence de pro^pôser es offers extérierues? Peut-on préciser?
+//est-ce bien logique de ne pas faire hériter l'admin?
+// pb de mappingavec tags: plusieurs  produits peuvent avoir plusieurs tags
 
 @Entity
 public class Product implements Serializable {
@@ -95,7 +97,7 @@ private Offer offers;
 		this.offers = offers;}
 	
 
-	@ManyToMany(mappedBy="products")
+	@ManyToMany()
 	public Set<Tag> getTags() {
 		if ( this.tags == null)
 			this.tags = new HashSet<>();

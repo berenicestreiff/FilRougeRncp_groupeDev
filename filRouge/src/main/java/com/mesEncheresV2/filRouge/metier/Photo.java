@@ -48,14 +48,11 @@ public String getFileHash() {
 public void setFileHash(String fileHash) {
 	this.fileHash = fileHash;}
 
-
-
 @OneToOne
 public Product getProducts() {
 	return products;}
 public void setProducts(Product products) {
-	this.products = products;
-	}
+	this.products = products;}
 
 // Constructeurs
 
@@ -65,10 +62,17 @@ public Photo(int id, String fileName, String contentType, long fileSize, String 
 	this.fileName = fileName;
 	this.contentType = contentType;
 	this.fileSize = fileSize;
-	this.fileHash = fileHash;
-}
+	this.fileHash = fileHash;}
 
 public Photo(){this(0,"","",0,"");}
 
+
+//Utils 
+
+@Override
+public String toString() {
+	return "Photo [id=" + id + ", fileName=" + fileName + ", contentType=" + contentType + ", fileSize=" + fileSize
+			+ ", fileHash=" + fileHash + ", products=" + products + "]";
+}
 
 }
