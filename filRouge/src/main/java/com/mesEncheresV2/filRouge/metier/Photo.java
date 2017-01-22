@@ -1,12 +1,12 @@
 package com.mesEncheresV2.filRouge.metier;
 
-import java.util.Set;
-
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Entity
 public class Photo {
 
 private int id;
@@ -18,6 +18,13 @@ private int id;
 	private long fileSize;
 @Column(nullable=false, length=50)
 	private String fileHash;
+
+
+//Instanciation objets métier 
+
+private Product products;
+
+// Getter et setter
 
 @Id @GeneratedValue
 public int getId() {
@@ -41,6 +48,17 @@ public String getFileHash() {
 public void setFileHash(String fileHash) {
 	this.fileHash = fileHash;}
 
+
+
+@OneToOne
+public Product getProducts() {
+	return products;}
+public void setProducts(Product products) {
+	this.products = products;
+	}
+
+// Constructeurs
+
 public Photo(int id, String fileName, String contentType, long fileSize, String fileHash) {
 	super();
 	this.id = id;
@@ -50,14 +68,6 @@ public Photo(int id, String fileName, String contentType, long fileSize, String 
 	this.fileHash = fileHash;
 }
 
-
-private Set <Product> products;
-
-@OneToOne
-public Set<Product> getProducts() {
-	return products;}
-public void setProducts(Set<Product> products) {
-	this.products = products;}
 public Photo(){this(0,"","",0,"");}
 
 

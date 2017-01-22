@@ -2,6 +2,7 @@ package com.mesEncheresV2.filRouge.metier;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +15,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-// reste un pb de mapping entre les classes auction et picture
+
 @Entity
 public class Product implements Serializable {
  
 	private static final long serialVersionUID = 1L;
-	
-
 @Column(nullable=false)
 	private int id;
 @Column(nullable=false, length=100)
@@ -33,7 +32,20 @@ public class Product implements Serializable {
     private int minimumAuction;	
 @Column(nullable=false, length=30)
 
-	@Id @GeneratedValue
+
+// Instanciation objets métier 
+
+private Basic_User seller;
+private Auction_Session session;
+
+private Set <Tag>tags;
+private Photo photos;
+private Offer offers;
+
+// Getter et setter
+
+	@Id 
+	@GeneratedValue
 	public int getId() {
 		return id;}
 	public void setId(int id) {
@@ -55,7 +67,45 @@ public class Product implements Serializable {
 	public void setMinimumAuction(int minimumAuction) {
 		this.minimumAuction = minimumAuction;}
 
+	
+@OneToOne
+	public Photo getPhotos() {
+		return photos;}
+	public void setPhotos(Photo photos) {
+		this.photos = photos;}
+	
+	@ManyToOne
+	public Basic_User getSeller() {
+		return seller;}
+	public void setSeller(Basic_User seller) {
+		this.seller = seller;}
+	
+	@OneToOne
+	public Auction_Session getSession() {
+		return session;}
+	public void setSession(Auction_Session session) {
+		this.session = session;}
+	
+	@OneToOne
+	public Offer getOffers() {
+		return offers;}
+	
+	@OneToOne
+	public void setOffers(Offer offers) {
+		this.offers = offers;}
+	
 
+	@ManyToMany(mappedBy="products")
+	public Set<Tag> getTags() {
+		if ( this.tags == null)
+			this.tags = new HashSet<>();
+		return this.tags;
+	}
+	public void setTags(Set<Tag> tags) { this.tags = tags; }
+
+
+	// Constructeurs
+	
 	public Product(int id, String désignation, String description, int initialPrice, int minimumAuction,
 			String fileName, String contentType, long fileSize, String fileHash) {
 		super();
@@ -68,41 +118,12 @@ public class Product implements Serializable {
 	}
 	public Product() { this(0,"","",0,0,"","",0,"");}
 	
-	Basic_User vendeur;
-	Auction_Session session;
+	// utils
 	
-	private Set <Tag>tags;
-	private Set <Photo>photos;
-	private Set <Basic_User> users;
-	private Offer offers;
-
-//je laisse les pictures au cas où on décide e complecxifir par la suite
-
-
-
-	@ManyToOne
-	public Set<Basic_User> getUsers() {
-		return users;}
-	public Offer getOffers() {
-		return offers;
-	}
-	
-	@OneToOne
-	public void setOffers(Offer offers) {
-		this.offers = offers;}
-	public void setUsers(Set<Basic_User> users) {
-		this.users = users;}
-
-@OneToOne
-	public Set<Photo> getPhotos() {
-		return photos;}
-	public void setPhotos(Set<Photo> photos) {
-		this.photos = photos;}
-	@ManyToMany
-	public Set<Tag> getTags() {
-		return tags;}
-	public void setTags(Set<Tag> tags) {
-		this.tags = tags;}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", désignation=" + désignation + ", description=" + description + ", initialPrice="
+				+ initialPrice + ", minimumAuction=" + minimumAuction + ", photos=" + photos + "]";}
 	
 	
 }
