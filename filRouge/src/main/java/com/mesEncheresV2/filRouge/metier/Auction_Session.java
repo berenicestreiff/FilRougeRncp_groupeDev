@@ -14,18 +14,18 @@ public class Auction_Session {
 
 	private int id;
 	private int MaxAuctionAuto;
-	
-	
+
+
 	// instanciation objets métier
-	
-	
+
+
 	private Product products;
 	private Set<Offer> offers;
 	private Set<Basic_User> encherisseurs;
-	
-	
+
+
 	//Getter and setter
-	
+
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -40,7 +40,7 @@ public class Auction_Session {
 		return products;}
 	public void setProducts(Product products) {
 		this.products = products;}
-	
+
 	@OneToMany(mappedBy="auction_sessions")
 	public Set<Offer> getOffers() {
 		return offers;}
@@ -51,9 +51,9 @@ public class Auction_Session {
 
 
 	// COnstructeurs
-	
+
 	public Auction_Session(){this(0,0);}
-	
+
 
 	@ManyToMany
 	public Set<Basic_User> getEncherisseurs() {
@@ -68,12 +68,12 @@ public class Auction_Session {
 		MaxAuctionAuto = maxAuctionAuto;
 	}
 
-	
+
 	// Utils
-	
+
 	@Override
 	public String toString() {
 		return "Auction_Session [id=" + id + ", MaxAuctionAuto=" + MaxAuctionAuto + "]";
 	}
-	
+
 }

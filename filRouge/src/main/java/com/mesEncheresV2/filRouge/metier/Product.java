@@ -20,31 +20,31 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Product implements Serializable {
- 
+
 	private static final long serialVersionUID = 1L;
-@Column(nullable=false)
+	@Column(nullable=false)
 	private int id;
-@Column(nullable=false, length=100)
+	@Column(nullable=false, length=100)
 	private String désignation;
-@Column(nullable=false, length=200)
+	@Column(nullable=false, length=200)
 	private String description;
-@Column(nullable=false, length=10)
+	@Column(nullable=false, length=10)
 	private int initialPrice;
-@Column(nullable=false, length=10)
-    private int minimumAuction;	
-@Column(nullable=false, length=30)
+	@Column(nullable=false, length=10)
+	private int minimumAuction;	
+	@Column(nullable=false, length=30)
 
 
-// Instanciation objets métier 
+	// Instanciation objets métier 
 
-private Basic_User seller;
-private Auction_Session session;
+	private Basic_User seller;
+	private Auction_Session session;
 
-private Set <Tag>tags;
-private Photo photos;
-private Offer offers;
+	private Set <Tag>tags;
+	private Photo photos;
+	private Offer offers;
 
-// Getter et setter
+	// Getter et setter
 
 	@Id 
 	@GeneratedValue
@@ -69,33 +69,33 @@ private Offer offers;
 	public void setMinimumAuction(int minimumAuction) {
 		this.minimumAuction = minimumAuction;}
 
-	
-@OneToOne
+
+	@OneToOne
 	public Photo getPhotos() {
 		return photos;}
 	public void setPhotos(Photo photos) {
 		this.photos = photos;}
-	
+
 	@ManyToOne
 	public Basic_User getSeller() {
 		return seller;}
 	public void setSeller(Basic_User seller) {
 		this.seller = seller;}
-	
+
 	@OneToOne
 	public Auction_Session getSession() {
 		return session;}
 	public void setSession(Auction_Session session) {
 		this.session = session;}
-	
+
 	@OneToOne
 	public Offer getOffers() {
 		return offers;}
-	
+
 	@OneToOne
 	public void setOffers(Offer offers) {
 		this.offers = offers;}
-	
+
 
 	@ManyToMany()
 	public Set<Tag> getTags() {
@@ -107,7 +107,7 @@ private Offer offers;
 
 
 	// Constructeurs
-	
+
 	public Product(int id, String désignation, String description, int initialPrice, int minimumAuction,
 			String fileName, String contentType, long fileSize, String fileHash) {
 		super();
@@ -116,18 +116,18 @@ private Offer offers;
 		this.description = description;
 		this.initialPrice = initialPrice;
 		this.minimumAuction = minimumAuction;
-	
+
 	}
 	public Product() { this(0,"","",0,0,"","",0,"");}
-	
+
 	// utils
-	
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", désignation=" + désignation + ", description=" + description + ", initialPrice="
 				+ initialPrice + ", minimumAuction=" + minimumAuction + ", photos=" + photos + "]";}
-	
-	
+
+
 }
 
 

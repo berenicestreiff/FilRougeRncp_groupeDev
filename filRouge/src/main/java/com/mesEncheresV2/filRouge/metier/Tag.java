@@ -17,44 +17,44 @@ public class Tag implements Serializable {
 
 
 	// Instanciation objets métier 
-	
+
 	private String tag_name;
 	private Set<Product> products;
-	
-	
+
+
 	@Id 
 	@GeneratedValue
 	public int getId() {
-		return id;}
+	return id;}
 	public void setId(int id) {
-		this.id = id;}
+	this.id = id;}
 	public String getTag_name() {
-		return tag_name;}
+	return tag_name;}
 	public void setTag_name(String tag_name) {
-		this.tag_name = tag_name;}
+	this.tag_name = tag_name;}
 
 
 	@ManyToMany
 	public Set<Product> getProducts() {
-		if( this.products == null )
-			this.products = new HashSet<>();
-		return this.products;}
-	
+	if( this.products == null )
+	this.products = new HashSet<>();
+	return this.products;}
+
 	public void setProducts(Set<Product> products) { this.products = products; }
-	
+
 	// Constructerus
 
-	
+
 	public Tag(int id, String tag_name) {
 		super();
 		this.id = id;
 		this.tag_name = tag_name;}
 
-	
+
 	public Tag(){this(0,"");}
-	
+
 	// Utils
-	
+
 	@Override
 	public String toString() {
 		return "Tags [id=" + id + ", tag_name=" + tag_name + "]";}
