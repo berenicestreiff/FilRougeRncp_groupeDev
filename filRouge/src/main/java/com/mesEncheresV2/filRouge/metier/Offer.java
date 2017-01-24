@@ -11,11 +11,9 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Offer {
 
-	@Column(nullable=false,length=5)
+
 	private int id;
-	@Column(nullable=false,length=10)
 	int nouveauMontant;
-	@Column(nullable=false,length=10)
 	private Date dateEnchere;
 
 
@@ -33,10 +31,14 @@ public class Offer {
 		return id;}
 	public void setId(int id) {
 		this.id = id;}
+
+	@Column(nullable=false,length=10)
 	public int getNouveauMontant() {
 		return nouveauMontant;	}
 	public void setNouveauMontant(int nouveauMontant) {
 		this.nouveauMontant = nouveauMontant;}
+
+	@Column(nullable=false,length=10)
 	public Date getDateEnchere() {
 		return dateEnchere;}
 	public void setDateEnchere(Date dateEnchere) {

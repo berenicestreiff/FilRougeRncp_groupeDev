@@ -1,6 +1,6 @@
 package com.mesEncheresV2.filRouge.metier;
 
-import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -12,27 +12,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
-//serializbleindispensable?
-// protected et private entre basic user et professional User
-//Ext prop a t-im pour seule différence de pro^pôser es offers extérierues? Peut-on préciser?
-//est-ce bien logique de ne pas faire hériter l'admin?
-// pb de mappingavec tags: plusieurs  produits peuvent avoir plusieurs tags
 
 @Entity
-public class Product implements Serializable {
+public class Product {
 
-	private static final long serialVersionUID = 1L;
-	@Column(nullable=false)
 	private int id;
-	@Column(nullable=false, length=100)
 	private String désignation;
-	@Column(nullable=false, length=200)
 	private String description;
-	@Column(nullable=false, length=10)
 	private int initialPrice;
-	@Column(nullable=false, length=10)
 	private int minimumAuction;	
-	@Column(nullable=false, length=30)
+
 
 
 	// Instanciation objets métier 
@@ -52,18 +41,26 @@ public class Product implements Serializable {
 		return id;}
 	public void setId(int id) {
 		this.id = id;}
+	
+	@Column(nullable=false, length=50)
 	public String getDésignation() {
 		return désignation;}
 	public void setDésignation(String désignation) {
 		this.désignation = désignation;}
+	
+	@Column(nullable=false, length=200)
 	public String getDescription() {
 		return description;	}
 	public void setDescription(String description) {
 		this.description = description;}
+	
+	@Column(nullable=false, length=10)
 	public int getInitialPrice() {
 		return initialPrice;}
 	public void setInitialPrice(int initialPrice) {
 		this.initialPrice = initialPrice;}
+	
+	@Column(nullable=false, length=10)
 	public int getMinimumAuction() {
 		return minimumAuction;}
 	public void setMinimumAuction(int minimumAuction) {
@@ -91,13 +88,11 @@ public class Product implements Serializable {
 	@OneToOne
 	public Offer getOffers() {
 		return offers;}
-
-	@OneToOne
 	public void setOffers(Offer offers) {
 		this.offers = offers;}
 
 
-	@ManyToMany()
+	@ManyToMany
 	public Set<Tag> getTags() {
 		if ( this.tags == null)
 			this.tags = new HashSet<>();

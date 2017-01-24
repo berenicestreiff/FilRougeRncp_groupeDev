@@ -11,44 +11,49 @@ import javax.persistence.Entity;
 @Entity
 public class Professionnal_User extends Basic_User{
 
-	@Column (nullable=false, length=35)
+
 	protected String business_name;
-	@Column(nullable=false,length=20)
 	protected String activity_domain;
-	@Column(nullable=false,length=20)
 	protected String compagny_name;
-	@Column(nullable=false,length=50)
 	protected String compagny_adress;
-	@Column(nullable=false,length=20)
 	protected int compagny_postal_code;
-	@Column(nullable=false,length=15)
 	protected String comapgny_city;
 
 
 	//getters and setters
 
 
-
+	@Column (nullable=false, length=35)
 	public String getBusiness_name() {
 		return business_name;}
 	public void setBusiness_name(String business_name) {
 		this.business_name = business_name;}
+	
+	@Column(nullable=false,length=20)
 	public String getActivity_domain() {
 		return activity_domain;}
 	public void setActivity_domain(String activity_domain) {
 		this.activity_domain = activity_domain;}
+	
+	@Column(nullable=false,length=20)
 	public String getCompagny_name() {
 		return compagny_name;}
 	public void setCompagny_name(String compagny_name) {
 		this.compagny_name = compagny_name;}
+	
+	@Column(nullable=false,length=50)
 	public String getCompagny_adress() {
 		return compagny_adress;}
 	public void setCompagny_adress(String compagny_adress) {
 		this.compagny_adress = compagny_adress;}
+	
+	@Column(nullable=false,length=10)
 	public int getCompagny_postal_code() {
 		return compagny_postal_code;}
 	public void setCompagny_postal_code(int compagny_postal_code) {
 		this.compagny_postal_code = compagny_postal_code;}
+	
+	@Column(nullable=false,length=20)
 	public String getComapgny_city() {
 		return comapgny_city;}
 	public void setComapgny_city(String comapgny_city) {
@@ -60,12 +65,6 @@ public class Professionnal_User extends Basic_User{
 
 
 	public Professionnal_User(){this(0,"","","","","",0,"","","",null,0,"","","","",0,"");}
-
-	// utils
-
-public Professionnal_User(int id, String username, String password, String surname, String firstname, String adress,
-			int postal_code, String city, String pays, String email, Date birthdayDate, int phoneNumber) {
-		super(id, username, password, surname, firstname, adress, postal_code, city, pays, email, birthdayDate, phoneNumber);}
 
 
 

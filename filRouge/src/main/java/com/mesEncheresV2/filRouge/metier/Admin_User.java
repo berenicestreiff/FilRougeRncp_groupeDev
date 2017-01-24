@@ -9,47 +9,48 @@ import javax.persistence.Id;
 @Entity
 public class Admin_User {
 
-
-	@Column(nullable=false,length=5)
 	private int id;
-	@Column(nullable=false,length=30)
 	private String username;
-	@Column(nullable=false,length=30)
 	private  String password;
-	@Column(nullable=false,length=25)
 	private  String surname;
-	@Column(nullable=false,length=25)
 	private  String firstname;
-	@Column(nullable=false,length=25)
 	private  String admin_type;
 
 
-
-
 	//Getter and setter
-
+	
 	@Id
 	@GeneratedValue
 	public int getId() {
 		return id;}
 	public void setId(int id) {
 		this.id = id;}
+	
+	@Column(nullable=false,length=10)
 	public String getUsername() {
 		return username;}
 	public void setUsername(String username) {
 		this.username = username;}
+	
+	@Column(nullable=false,length=10)
 	public String getPassword() {
 		return password;}
 	public void setPassword(String password) {
 		this.password = password;}
+	
+	@Column(nullable=false,length=35)
 	public String getSurname() {
 		return surname;}
 	public void setSurname(String surname) {
 		this.surname = surname;}
+	
+	@Column(nullable=false,length=35)
 	public String getFirstname() {
 		return firstname;}
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;}
+	
+	@Column(nullable=false,length=25)
 	public String getAdmin_type() {
 		return admin_type;}
 	public void setAdmin_type(String admin_type) {
