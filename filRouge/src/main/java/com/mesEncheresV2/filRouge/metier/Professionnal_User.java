@@ -5,9 +5,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-//private/protected???:l'enfant pet voir le parent mais pas l'inverse hahaha
-
-
 @Entity
 public class Professionnal_User extends Basic_User{
 
