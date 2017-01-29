@@ -1,5 +1,6 @@
 package com.mesEncheresV2.filRouge.utils;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -81,6 +82,10 @@ public class FileStorageManager {
 			return Optional.empty();
 
 
+	}
+	public boolean saveFile(String entityName, int id, ByteArrayInputStream byteArrayInputStream) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

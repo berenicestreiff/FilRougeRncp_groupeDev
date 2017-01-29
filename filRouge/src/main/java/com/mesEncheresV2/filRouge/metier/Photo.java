@@ -55,8 +55,8 @@ public class Photo {
 	@OneToOne
 	public Product getProducts() {
 		return products;}
-	public void setProducts(Product products) {
-		this.products = products;}
+	public void setProducts(Object products2) {
+		this.products = (Product) products2;}
 
 	// Constructeurs
 
@@ -85,6 +85,8 @@ public class Photo {
 	public void setEncherisseurs(Basic_User encherisseurs) {
 		// TODO Auto-generated method stub
 
+	}
+	public void setArticle(Product article) {
 	}
 
 }
