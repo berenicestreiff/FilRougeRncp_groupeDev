@@ -86,7 +86,6 @@ public class Photo {
 		// TODO Auto-generated method stub
 
 	}
-	public void setArticle(Product article) {
-	}
+
 
 }
