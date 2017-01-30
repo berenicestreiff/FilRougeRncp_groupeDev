@@ -20,15 +20,25 @@ public class Offer {
 
 	//Instanciation des objets métier
 
-	private Auction_Session auction_sessions;
+	private Product products;
+
 
 
 	//Getter and setter
+
+	@ManyToOne(mappedBy="offers")
+	public Product getProducts() {
+		return products;
+	}
+	public void setProducts(Product products) {
+		this.products = products;
+	}
 
 	@Id
 	@GeneratedValue
 	public int getId() {
 		return id;}
+
 	public void setId(int id) {
 		this.id = id;}
 
@@ -44,11 +54,6 @@ public class Offer {
 	public void setDateEnchere(Date dateEnchere) {
 		this.dateEnchere = dateEnchere;}
 
-	@ManyToOne
-	public Auction_Session getAuction_sessions() {
-		return auction_sessions;}
-	public void setAuction_sessions(Auction_Session auction_sessions) {
-		this.auction_sessions = auction_sessions;}
 
 
 	//Constructeurs

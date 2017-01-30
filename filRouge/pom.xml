@@ -202,11 +202,11 @@
       				<container>
 	        			<containerId>tomcat8x</containerId>
 	        			<type>installed</type>
-	    				<home>C:\apache-tomcat-8.0.37</home>
+	    				<home>C:\apache-tomcat-8.0.39</home>
     				</container>
     				<configuration>
     					<type>existing</type>
-                    	<home>C:\apache-tomcat-8.0.37</home>
+                    	<home>C:\apache-tomcat-8.0.39</home>
     				</configuration>
                     <deployables>
                         <deployable>

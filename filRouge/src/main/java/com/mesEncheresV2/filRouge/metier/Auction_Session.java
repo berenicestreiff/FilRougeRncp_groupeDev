@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 
@@ -20,7 +21,6 @@ public class Auction_Session {
 
 
 	private Product products;
-	private Set<Offer> offers;
 	private Set<Basic_User> encherisseurs;
 
 
@@ -36,17 +36,12 @@ public class Auction_Session {
 		return MaxAuctionAuto;}
 	public void setMaxAuctionAuto(int maxAuctionAuto) {
 		MaxAuctionAuto = maxAuctionAuto;}
+	
+	@OneToOne
 	public Product getProducts() {
 		return products;}
 	public void setProducts(Product products) {
 		this.products = products;}
-
-	@OneToMany(mappedBy="auction_sessions")
-	public Set<Offer> getOffers() {
-		return offers;}
-	public void setOffers(Set<Offer> offers) {
-		this.offers = offers;}
-
 
 
 

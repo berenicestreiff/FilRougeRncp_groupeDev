@@ -33,7 +33,7 @@ public class Basic_User  {
 	// Instanciation objets métier 
 
 	private Set <Product> products;
-	private Set<Auction_Session> Auction_Sessions;
+
 
 
 	//getter and setter
@@ -44,14 +44,6 @@ public class Basic_User  {
 		return products;}
 	public void setProducts(Set<Product> products) {
 		this.products = products;}
-
-
-	@ManyToMany(mappedBy="encherisseurs")
-	public Set<Auction_Session> getAuction_Sessions() {
-		return Auction_Sessions;}
-	public void setAuction_Sessions(Set<Auction_Session> auction_Session) {
-		Auction_Sessions = auction_Session;}
-
 
 	@Id @GeneratedValue
 	public int getId() {

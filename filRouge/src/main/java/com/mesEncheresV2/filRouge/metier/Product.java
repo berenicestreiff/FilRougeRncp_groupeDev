@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -85,7 +86,7 @@ public class Product {
 	public void setSession(Auction_Session session) {
 		this.session = session;}
 
-	@OneToOne
+	@OneToMany
 	public Offer getOffers() {
 		return offers;}
 	public void setOffers(Offer offers) {
