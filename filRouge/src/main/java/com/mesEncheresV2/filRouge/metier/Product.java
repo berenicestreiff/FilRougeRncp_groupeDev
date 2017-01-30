@@ -122,6 +122,15 @@ public class Product {
 		return "Product [id=" + id + ", désignation=" + désignation + ", description=" + description + ", initialPrice="
 				+ initialPrice + ", minimumAuction=" + minimumAuction + ", photos=" + photos + "]";}
 
+	public void setAuction_sessions(Auction_Session auction_Session) {
+		// TODO Auto-generated method stub
+		
+	}
+	public Object getAuction_sessions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
 

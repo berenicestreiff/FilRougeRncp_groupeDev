@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mesEncheresV2.filRouge.metier.Admin_User;
 import com.mesEncheresV2.filRouge.metier.Basic_User;
+import com.mesEncheresV2.filRouge.metier.Product;
 import com.mesEncheresV2.filRouge.metier.Professionnal_User;
 import com.mesEncheresV2.filRouge.repositories.AdminUser_Repository;
 import com.mesEncheresV2.filRouge.repositories.BasicUser_Repository;
@@ -79,7 +80,7 @@ public class JsonPageable <T> implements Page<T> {
 	@Override
 	public <S> Page<S> map(Converter<? super T, ? extends S> arg0) {return originalPage.map(arg0);}
 
-	public static Page<Professionnal_User> fromPage(ProfessionalUser_Repository professionaluserrepository) {
+	public static Page<Product> fromPage(ProfessionalUser_Repository professionaluserrepository) {
 		// TODO Auto-generated method stub
 		return null;
 	}

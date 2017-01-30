@@ -91,12 +91,6 @@ public class UserController {
 	@RequestMapping(method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	//@JsonView(TagOnly.class)
-	public Page<Professionnal_User> listePro(@PageableDefault(page=0, size=10) Pageable pageRequest) {
-		return JsonPageable.fromPage(this.getProfessionalUserRepository().findAll(pageRequest));}
-
-	@RequestMapping(method=RequestMethod.GET, produces="application/json")
-	@ResponseBody
-	//@JsonView(TagOnly.class)
 	public Page<Admin_User> listeAdmin(@PageableDefault(page=0, size=10) Pageable pageRequest) {
 		return JsonPageable.fromPage(this.getAdminUserRepository().findAll(pageRequest));}
 
@@ -194,8 +188,6 @@ public class UserController {
 			old.setFirstname(user.getFirstname());
 			old.setAdmin_type(user.getAdmin_type());
 	
-
-
 			this.getAdminUserRepository().save(old);
 			return old;
 		}
