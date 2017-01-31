@@ -26,7 +26,7 @@ public class Offer {
 
 	//Getter and setter
 
-	@ManyToOne(mappedBy="offers")
+	@ManyToOne
 	public Product getProducts() {
 		return products;
 	}

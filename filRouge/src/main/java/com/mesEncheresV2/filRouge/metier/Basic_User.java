@@ -39,7 +39,7 @@ public class Basic_User  {
 	//getter and setter
 
 
-	@OneToMany
+	@OneToMany(mappedBy="seller")
 	public Set<Product> getProducts() {
 		return products;}
 	public void setProducts(Set<Product> products) {

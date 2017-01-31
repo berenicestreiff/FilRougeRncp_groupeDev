@@ -1,5 +1,7 @@
 package com.mesEncheresV2.filRouge.metier;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,48 +9,14 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Admin_User {
+public class Admin_User extends Basic_User {
 
-	private int id;
-	private String username;
-	private  String password;
-	private  String surname;
-	private  String firstname;
 	private  String admin_type;
 
 
 	//Getter and setter
 	
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;}
-	public void setId(int id) {
-		this.id = id;}
 	
-	@Column(nullable=false,length=10)
-	public String getUsername() {
-		return username;}
-	public void setUsername(String username) {
-		this.username = username;}
-	
-	@Column(nullable=false,length=10)
-	public String getPassword() {
-		return password;}
-	public void setPassword(String password) {
-		this.password = password;}
-	
-	@Column(nullable=false,length=35)
-	public String getSurname() {
-		return surname;}
-	public void setSurname(String surname) {
-		this.surname = surname;}
-	
-	@Column(nullable=false,length=35)
-	public String getFirstname() {
-		return firstname;}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;}
 	
 	@Column(nullable=false,length=25)
 	public String getAdmin_type() {
@@ -59,25 +27,15 @@ public class Admin_User {
 
 
 	//Constructeurs
+//todo
+	public Admin_User(){this(0,"","","","","",0,"","","",new Date(),0,"");}
+	public Admin_User(int id, String username, String password, String surname, String firstname, String adress,
+			int postal_code, String city, String pays, String email, Date birthdayDate, int phoneNumber,
+			String admin_type) {
+		super(id, username, password, surname, firstname, adress, postal_code, city, pays, email, birthdayDate,
+				phoneNumber);
+		this.admin_type = admin_type;
+	}
 
-	public Admin_User(){this(0,"","","","","");}
-
-	public Admin_User(int id, String username, String password, String surname, String firstname, String admin_type) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.surname = surname;
-		this.firstname = firstname;
-		this.admin_type = admin_type;}
-
-
-	//Utils
-
-
-	@Override
-	public String toString() {
-		return "Admin_User [id=" + id + ", username=" + username + ", password=" + password + ", surname=" + surname
-				+ ", firstname=" + firstname + ", admin_type=" + admin_type + "]";}
 
 }

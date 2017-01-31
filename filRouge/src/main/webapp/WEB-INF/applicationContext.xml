@@ -49,6 +49,11 @@
 		</property>
 </bean>
 
+<bean id="fileStorageManager"
+	  class="com.mesEncheresV2.filRouge.utils.FileStorageManager">
+	  <property name="storageRoot" value="C:\img" />
+</bean>
+
 <bean 	id="transactionManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />

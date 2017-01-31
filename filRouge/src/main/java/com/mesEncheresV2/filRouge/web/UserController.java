@@ -81,14 +81,14 @@ public class UserController {
 	// nos methodes List sur nos différents users
 
 
-	@RequestMapping(method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/basic/",method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	//@JsonView(TagOnly.class)
 	public Page<Basic_User> listeBasic(@PageableDefault(page=0, size=10) Pageable pageRequest) {
 		return JsonPageable.fromPage(this.getBasicUserRepository().findAll(pageRequest));}
 
 
-	@RequestMapping(method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/admin/",method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	//@JsonView(TagOnly.class)
 	public Page<Admin_User> listeAdmin(@PageableDefault(page=0, size=10) Pageable pageRequest) {
@@ -163,7 +163,9 @@ public class UserController {
 			old.setCompagny_name(user.getCompagny_name());
 			old.setCompagny_adress(user.getCompagny_adress());
 			old.setCompagny_postal_code(user.getCompagny_postal_code());
-			old.setComapgny_city(user.getComapgny_city());
+			old.setComapgny_city(user.getComapgny_city
+					
+					());
 
 
 			this.getProfessionalUserRepository().save(old);
@@ -181,13 +183,13 @@ public class UserController {
 		else
 		{
 
-		
+
 			old.setSurname(user.getSurname());
 			old.setPassword(user.getPassword());
 			old.setSurname(user.getSurname());
 			old.setFirstname(user.getFirstname());
 			old.setAdmin_type(user.getAdmin_type());
-	
+
 			this.getAdminUserRepository().save(old);
 			return old;
 		}

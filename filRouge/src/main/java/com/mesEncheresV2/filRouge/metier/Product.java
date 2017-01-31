@@ -32,7 +32,7 @@ public class Product {
 
 	private Set <Tag>tags;
 	private Photo photos;
-	private Offer offers;
+	private Set <Offer> offers;
 
 	// Getter et setter
 
@@ -86,12 +86,12 @@ public class Product {
 	public void setSession(Auction_Session session) {
 		this.session = session;}
 
-	@OneToMany
-	public Offer getOffers() {
-		return offers;}
-	public void setOffers(Offer offers) {
-		this.offers = offers;}
+	@OneToMany(mappedBy="products")
 
+	public Set<Offer> getOffers() {
+		return offers;}
+	public void setOffers(Set<Offer> offers) {
+		this.offers = offers;}
 
 	@ManyToMany
 	public Set<Tag> getTags() {
@@ -123,14 +123,6 @@ public class Product {
 		return "Product [id=" + id + ", désignation=" + désignation + ", description=" + description + ", initialPrice="
 				+ initialPrice + ", minimumAuction=" + minimumAuction + ", photos=" + photos + "]";}
 
-	public void setAuction_sessions(Auction_Session auction_Session) {
-		// TODO Auto-generated method stub
-		
-	}
-	public Object getAuction_sessions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

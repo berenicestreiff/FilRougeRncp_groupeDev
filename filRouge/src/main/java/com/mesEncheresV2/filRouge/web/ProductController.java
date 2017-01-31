@@ -108,9 +108,9 @@ public Product updateOne(@RequestBody Product products)
 	public Product demarrer(@PathVariable("id") int id)
 	{
 		Product products = this.getProductRepository().findOne(id);
-		if (products.getAuction_sessions() != null)
+		if (products.getSession() != null)
 			return null;
-		products.setAuction_sessions(new Auction_Session(0, 0));
+		products.setSession(new Auction_Session(0, 0));
 		this.getProductRepository().save(products);
 		return products;
 	}
