@@ -95,7 +95,7 @@ public Product updateOne(@RequestBody Product products)
 	
 
 	{
-		old.setDésignation(products.getDésignation());
+		old.setDesignation(products.getDesignation());
 		old.setDescription(products.getDescription());
 		old.setInitialPrice(products.getInitialPrice());
 		old.setMinimumAuction(products.getMinimumAuction());

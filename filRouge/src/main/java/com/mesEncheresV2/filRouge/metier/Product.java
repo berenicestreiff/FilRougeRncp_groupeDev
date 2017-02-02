@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 public class Product {
 
 	private int id;
-	private String désignation;
+	private String designation;
 	private String description;
 	private int initialPrice;
 	private int minimumAuction;	
@@ -29,7 +29,6 @@ public class Product {
 
 	private Basic_User seller;
 	private Auction_Session session;
-
 	private Set <Tag>tags;
 	private Photo photos;
 	private Set <Offer> offers;
@@ -44,16 +43,17 @@ public class Product {
 		this.id = id;}
 	
 	@Column(nullable=false, length=50)
-	public String getDésignation() {
-		return désignation;}
-	public void setDésignation(String désignation) {
-		this.désignation = désignation;}
+	public void setDesignation(String designation) {
+		this.designation = designation;}
+	public void setDescription(String description) {
+		this.description = description;}
 	
 	@Column(nullable=false, length=200)
 	public String getDescription() {
 		return description;	}
-	public void setDescription(String description) {
-		this.description = description;}
+	public String getDesignation() {
+		return designation;}
+
 	
 	@Column(nullable=false, length=10)
 	public int getInitialPrice() {
@@ -104,11 +104,11 @@ public class Product {
 
 	// Constructeurs
 
-	public Product(int id, String désignation, String description, int initialPrice, int minimumAuction,
+	public Product(int id, String designation, String description, int initialPrice, int minimumAuction,
 			String fileName, String contentType, long fileSize, String fileHash) {
 		super();
 		this.id = id;
-		this.désignation = désignation;
+		this.designation = designation;
 		this.description = description;
 		this.initialPrice = initialPrice;
 		this.minimumAuction = minimumAuction;
@@ -120,7 +120,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", désignation=" + désignation + ", description=" + description + ", initialPrice="
+		return "Product [id=" + id + ", désignation=" + designation + ", description=" + description + ", initialPrice="
 				+ initialPrice + ", minimumAuction=" + minimumAuction + ", photos=" + photos + "]";}
 
 

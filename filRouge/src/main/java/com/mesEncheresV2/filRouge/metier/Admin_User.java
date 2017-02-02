@@ -1,11 +1,8 @@
 package com.mesEncheresV2.filRouge.metier;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 
 @Entity
@@ -27,7 +24,7 @@ public class Admin_User extends Basic_User {
 
 
 	//Constructeurs
-//todo
+
 	public Admin_User(){this(0,"","","","","",0,"","","",new Date(),0,"");}
 	public Admin_User(int id, String username, String password, String surname, String firstname, String adress,
 			int postal_code, String city, String pays, String email, Date birthdayDate, int phoneNumber,

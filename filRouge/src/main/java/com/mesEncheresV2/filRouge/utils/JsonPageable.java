@@ -9,17 +9,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mesEncheresV2.filRouge.metier.Admin_User;
+import com.mesEncheresV2.filRouge.metier.Auction_Session;
 import com.mesEncheresV2.filRouge.metier.Basic_User;
 import com.mesEncheresV2.filRouge.metier.Product;
-import com.mesEncheresV2.filRouge.metier.Professionnal_User;
+import com.mesEncheresV2.filRouge.metier.Tag;
 import com.mesEncheresV2.filRouge.repositories.AdminUser_Repository;
+import com.mesEncheresV2.filRouge.repositories.AuctionSession_Repository;
 import com.mesEncheresV2.filRouge.repositories.BasicUser_Repository;
 import com.mesEncheresV2.filRouge.repositories.ProfessionalUser_Repository;
+import com.mesEncheresV2.filRouge.repositories.Tag_Repository;
 
 public class JsonPageable <T> implements Page<T> {
 
 	public static class PaginatedResult {}
-
 
 
 	private Page<T> originalPage;
@@ -80,10 +82,6 @@ public class JsonPageable <T> implements Page<T> {
 	@Override
 	public <S> Page<S> map(Converter<? super T, ? extends S> arg0) {return originalPage.map(arg0);}
 
-	public static Page<Product> fromPage(ProfessionalUser_Repository professionaluserrepository) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public static Page<Basic_User> fromPage(BasicUser_Repository findAll) {
 		// TODO Auto-generated method stub
@@ -95,7 +93,20 @@ public class JsonPageable <T> implements Page<T> {
 		return null;
 	}
 
+	public static Page<Tag> fromPage(Tag_Repository findAll) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	public static Page<Product> fromPage(ProfessionalUser_Repository findAll) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static Page<Auction_Session> fromPage(AuctionSession_Repository findAll) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	}
 
 
