@@ -2,9 +2,9 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 
-import { AppComponent }  from './app.component';
-import { ProductDetailsComponent }  from './product-details.component';
-
+import { AppComponent }  from './components/app-component/app.component';
+import { ProductDetailsComponent }  from './components/product-formEdit/product-formEdit.component';
+import { Product } from'./components/product/product';
 
 // pour gerer les formulaire dans notre application
 // on import FormsModule depuis '@angular/forms'
@@ -18,7 +18,7 @@ import { ProductDetailsComponent }  from './product-details.component';
 // -> bootstrap, le composant de démarrage (uniquement sur un module racine)
 @NgModule({
   imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, ProductDetailsComponent],
+  declarations: [ AppComponent, ProductDetailsComponent,],
   bootstrap:    [ AppComponent ]  
 })
 export class AppModule { }

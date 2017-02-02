@@ -1,0 +1,12 @@
+   <div *ngIf="product">
+        <h2>product no {{product.id}}</h2>
+        <label>Designation: </label>
+        <input [(ngModel)]="product.designation" placeholder="designation" />
+        <label>Descirption: </label>
+        <input [(ngModel)]="prodcut.description" placeholder="description" />
+        <label>initialPrice: </label>
+        <input [(ngModel)]="product.initialPrice" placeholder="1" />     
+        <label>minimumAuction: </label>
+        <input [(ngModel)]="product.minimumAuction" placeholder="10" />      
+     </div>
+  }
