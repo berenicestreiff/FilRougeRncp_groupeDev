@@ -1,0 +1,10 @@
+<h1>todoManager</h1>
+            <h2>liste des produits</h2>
+            <ul class="products">
+              <li *ngFor="let product of products"
+                (click)="onProductSelect(product.id)">
+                <span class="badge bleft">{{product.id}}</span>
+                {{product.designation}}
+              </li>
+            </ul>
+            <product-details [product]="selectedProduct"></product-details>

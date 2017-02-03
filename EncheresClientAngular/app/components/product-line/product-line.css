@@ -1,0 +1,39 @@
+  
+      .products {
+        margin: 0 0 2em 0;
+        list-style-type: none;
+        padding: 0;
+        width: 17em;
+      }
+      .products li {
+        background-color: #EEE;
+        position: relative;
+        left: 0;
+        margin: .5em;
+        padding: .3em 0;
+        height: 1.6em;
+        border-radius: 4px;
+      }
+      .products .badge {
+        font-size: small;
+        display: inline-block;
+        position: relative;
+        line-height: 1em;
+        padding: 0.8em 0.7em 0 0.7em;
+        height: 1.8em;
+        border-radius: 4px 4px 4px 4px;
+        left: -1px;
+        top: -4px;
+      }
+      .bleft {
+        background-color: #607D8B;
+        left: -1px;
+        margin-right: .8em;
+      }
+      .bright {
+        float: right;
+        background-color: DarkSalmon;
+      }
+      .products li:hover {
+        border: solid 2px blue;
+    
