@@ -4,10 +4,16 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mesEncheresV2.filRouge.metier.Auction_Session.Auction_SessionOnly;
+import com.mesEncheresV2.filRouge.utils.JsonPageable;
+
 
 @Entity
 public class Admin_User extends Basic_User {
+	public static class Admin_UserOnly extends JsonPageable.PaginatedResult {}
 
+	@JsonView( { Admin_UserOnly.class } )
 	private  String admin_type;
 
 

@@ -7,12 +7,18 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mesEncheresV2.filRouge.utils.JsonPageable;
+
 
 
 @Entity
 public class Auction_Session {
+	public static class Auction_SessionOnly extends JsonPageable.PaginatedResult {}
 
+	@JsonView( { Auction_SessionOnly.class } )
 	private int id;
+	@JsonView( { Auction_SessionOnly.class } )
 	private int MaxAuctionAuto;
 
 

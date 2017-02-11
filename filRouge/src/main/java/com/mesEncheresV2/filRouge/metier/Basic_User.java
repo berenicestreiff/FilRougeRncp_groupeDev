@@ -12,20 +12,36 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mesEncheresV2.filRouge.utils.JsonPageable;
+
 @Entity
 public class Basic_User  {
+	public static class Basic_UserOnly extends JsonPageable.PaginatedResult {}
 
+	@JsonView( { Basic_UserOnly.class } )
 	private int id;
+	@JsonView( { Basic_UserOnly.class } )
 	private String username;
+	@JsonView( { Basic_UserOnly.class } )
 	private  String password;
+	@JsonView( { Basic_UserOnly.class } )
 	private  String surname;
+	@JsonView( { Basic_UserOnly.class } )
 	private  String firstname;
+	@JsonView( { Basic_UserOnly.class } )
 	private  String adress;
+	@JsonView( { Basic_UserOnly.class } )
 	private  int postal_code;
+	@JsonView( { Basic_UserOnly.class } )
 	private String city;
+	@JsonView( { Basic_UserOnly.class } )
 	private  String pays;
+	@JsonView( { Basic_UserOnly.class } )
 	private  String email;
+	@JsonView( { Basic_UserOnly.class } )
 	private  Date birthdayDate;
+	@JsonView( { Basic_UserOnly.class } )
 	private  int phoneNumber;
 
 

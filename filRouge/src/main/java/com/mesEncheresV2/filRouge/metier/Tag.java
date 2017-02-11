@@ -7,10 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mesEncheresV2.filRouge.utils.JsonPageable;
+
 @Entity
 public class Tag  {
-	
+	public static class TagOnly extends JsonPageable.PaginatedResult {}
+
+	@JsonView( { TagOnly.class } )
 	private int id;
+	@JsonView( { TagOnly.class } )
 	private String tag_name;
 
 	// Instanciation objets métier 

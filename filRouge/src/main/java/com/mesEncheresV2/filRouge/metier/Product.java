@@ -12,15 +12,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mesEncheresV2.filRouge.utils.JsonPageable;
+
 
 
 @Entity
 public class Product {
+	public static class ProductOnly extends JsonPageable.PaginatedResult {}
 
+	@JsonView( { ProductOnly.class } )
 	private int id;
+	@JsonView( { ProductOnly.class } )
 	private String designation;
+	@JsonView( { ProductOnly.class } )
 	private String description;
+	@JsonView( { ProductOnly.class } )
 	private int initialPrice;
+	@JsonView( { ProductOnly.class } )
 	private int minimumAuction;	
 
 

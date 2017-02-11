@@ -5,15 +5,25 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mesEncheresV2.filRouge.utils.JsonPageable;
+
 @Entity
 public class Professionnal_User extends Basic_User{
 
+	public static class Prodessionnal_UserOnly extends JsonPageable.PaginatedResult {}
 
+	@JsonView( { Prodessionnal_UserOnly.class } )
 	protected String business_name;
+	@JsonView( { Prodessionnal_UserOnly.class } )
 	protected String activity_domain;
+	@JsonView( { Prodessionnal_UserOnly.class } )
 	protected String compagny_name;
+	@JsonView( { Prodessionnal_UserOnly.class } )
 	protected String compagny_adress;
+	@JsonView( { Prodessionnal_UserOnly.class } )
 	protected int compagny_postal_code;
+	@JsonView( { Prodessionnal_UserOnly.class } )
 	protected String comapgny_city;
 
 

@@ -6,13 +6,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mesEncheresV2.filRouge.utils.JsonPageable;
+
 @Entity
 public class Photo {
+	public static class PhotoOnly extends JsonPageable.PaginatedResult {}
 
+	@JsonView( { PhotoOnly.class } )
 	private int id;
+	@JsonView( { PhotoOnly.class } )
 	private String fileName;
+	@JsonView( { PhotoOnly.class } )
 	private String contentType;
+	@JsonView( { PhotoOnly.class } )
 	private long fileSize;
+	@JsonView( { PhotoOnly.class } )
 	private String fileHash;
 
 
