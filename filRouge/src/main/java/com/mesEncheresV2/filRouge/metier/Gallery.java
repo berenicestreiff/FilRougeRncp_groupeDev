@@ -13,9 +13,6 @@ public class Gallery extends Asset {
 
 private List<Photo> photos;
 
-
-
-
 @ManyToMany
 @OrderColumn(name="position")
 public List<Photo> getPhotos() {
