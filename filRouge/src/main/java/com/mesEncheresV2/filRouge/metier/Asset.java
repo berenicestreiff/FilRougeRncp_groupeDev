@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,7 @@ public class Asset {
 	private LicenseType license;
 
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	public LicenseType getLicense() {return license;}
 	public void setLicense(LicenseType license) {this.license = license;}
 	
@@ -53,7 +54,7 @@ public class Asset {
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	public AssetSource getSource() {return source;}
 	public void setSource(AssetSource source) {this.source = source;}
 	

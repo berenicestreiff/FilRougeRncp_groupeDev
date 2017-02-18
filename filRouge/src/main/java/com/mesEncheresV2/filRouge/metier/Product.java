@@ -78,25 +78,25 @@ public class Product {
 		this.minimumAuction = minimumAuction;}
 
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	public Photo getPhotos() {
 		return photos;}
 	public void setPhotos(Photo photos) {
 		this.photos = photos;}
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	public Basic_User getSeller() {
 		return seller;}
 	public void setSeller(Basic_User seller) {
 		this.seller = seller;}
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	public Auction_Session getSession() {
 		return session;}
 	public void setSession(Auction_Session session) {
 		this.session = session;}
 
-	@OneToMany(mappedBy="products")
+	@OneToMany(mappedBy="products",fetch=FetchType.EAGER)
 
 	public Set<Offer> getOffers() {
 		return offers;}

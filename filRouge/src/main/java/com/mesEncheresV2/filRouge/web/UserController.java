@@ -17,6 +17,7 @@ import com.mesEncheresV2.filRouge.metier.Admin_User;
 import com.mesEncheresV2.filRouge.metier.Basic_User;
 import com.mesEncheresV2.filRouge.metier.Professionnal_User;
 import com.mesEncheresV2.filRouge.repositories.BasicUser_Repository;
+import com.mesEncheresV2.filRouge.repositories.Offer_Repository;
 import com.mesEncheresV2.filRouge.utils.JsonPageable;
 
 
@@ -26,6 +27,8 @@ public class UserController {
 
 
 	//Getters et setters de repository
+
+
 
 	@Autowired
 	private BasicUser_Repository basicUserRepository;
@@ -127,7 +130,7 @@ public class UserController {
 			old.setCompagny_adress(user.getCompagny_adress());
 			old.setCompagny_postal_code(user.getCompagny_postal_code());
 			old.setComapgny_city(user.getComapgny_city
-					
+
 					());
 
 

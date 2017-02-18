@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +42,7 @@ public static final int UNKOWN_SOURCE_ID = 1;
 	public String getDescription() {return description;}
 	public void setDescription(String description) {this.description = description;}
 	
-	@OneToMany(mappedBy="source")
+	@OneToMany(mappedBy="source",fetch=FetchType.EAGER)
 	public Set<Asset> getAssets() {
 		if (assets == null)
 			assets = new HashSet<>();

@@ -2,6 +2,7 @@ package com.mesEncheresV2.filRouge.metier;
 
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -42,7 +43,7 @@ public class Auction_Session {
 	public void setMaxAuctionAuto(int maxAuctionAuto) {
 		MaxAuctionAuto = maxAuctionAuto;}
 	
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	public Product getProducts() {
 		return products;}
 	public void setProducts(Product products) {
@@ -55,7 +56,7 @@ public class Auction_Session {
 	public Auction_Session(){this(0,0);}
 
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	public Set<Basic_User> getEncherisseurs() {
 		return encherisseurs;
 	}

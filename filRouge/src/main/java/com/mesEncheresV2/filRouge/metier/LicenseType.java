@@ -31,6 +31,7 @@ public static final int NO_LICENSE_ID = 1;
 	public void setDescription(String description) {this.description = description;}
 	
 	public LicenseType() { this(0, "", "");}
+	
 	public LicenseType(int id, String name, String description) {
 		super();
 		this.id = id;

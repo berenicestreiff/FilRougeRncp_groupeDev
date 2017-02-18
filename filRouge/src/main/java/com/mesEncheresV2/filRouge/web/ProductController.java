@@ -19,6 +19,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mesEncheresV2.filRouge.metier.Auction_Session;
 import com.mesEncheresV2.filRouge.metier.Basic_User;
+import com.mesEncheresV2.filRouge.metier.Offer;
 import com.mesEncheresV2.filRouge.metier.Product;
 import com.mesEncheresV2.filRouge.metier.Product.ProductOnly;
 import com.mesEncheresV2.filRouge.metier.Tag;
@@ -39,7 +40,7 @@ public class ProductController
 
 
 
-	// Mes Getters and Setters
+	// Mes Getters and Setters de repository
 
 	@Autowired
 	private Product_Repository productRepository;
@@ -76,6 +77,20 @@ public class ProductController
 		return Tag_Repository;}
 	public void setTag_Repository(Tag_Repository tag_Repository) {
 		Tag_Repository = tag_Repository;}
+	
+	// 	associer une offr à un product dans un POST
+	
+	@RequestMapping(value="/associeroffer/{produitId:[0-9]+}/{offerId:[0-9]+}", method = RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public void addOneProductByOffer(
+			@PathVariable("produitId") int produitId,
+			@PathVariable("offerId") int offerId)
+	{
+		Product p = this.getProductRepository().findOne(produitId);
+		Offer o = this.getOffer_Repository().findOne(offerId);
+		p.addOffer(o);
+		this.getProductRepository().save(p);
+	}
 
 	// associer un tag à un produit
 

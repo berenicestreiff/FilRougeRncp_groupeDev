@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 @Entity
@@ -13,7 +14,7 @@ public class Gallery extends Asset {
 
 private List<Photo> photos;
 
-@ManyToMany
+@ManyToMany(fetch=FetchType.EAGER)
 @OrderColumn(name="position")
 public List<Photo> getPhotos() {
 	if (photos == null)

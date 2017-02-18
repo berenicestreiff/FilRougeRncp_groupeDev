@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -57,7 +58,7 @@ public class Basic_User  {
 	//getter and setter
 
 
-	@OneToMany(mappedBy="seller")
+	@OneToMany(mappedBy="seller",fetch=FetchType.EAGER)
 	public Set<Product> getProducts() {
 		return products;}
 	public void setProducts(Set<Product> products) {

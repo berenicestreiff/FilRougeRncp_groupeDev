@@ -2,6 +2,7 @@ package com.mesEncheresV2.filRouge.metier;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -61,7 +62,7 @@ public class Photo {
 	public void setFileHash(String fileHash) {
 		this.fileHash = fileHash;}
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	public Product getProducts() {
 		return products;}
 	public void setProducts(Object products2) {
