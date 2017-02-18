@@ -22,7 +22,9 @@ import com.mesEncheresV2.filRouge.utils.JsonPageable;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Basic_User  {
 	public static class Basic_UserOnly extends JsonPageable.PaginatedResult {}
-
+	public static class Basic_All extends Basic_UserOnly {};
+	public static class UserWithProduct extends Basic_UserOnly {};
+	
 	@JsonView( { Basic_UserOnly.class } )
 	private int id;
 	@JsonView( { Basic_UserOnly.class } )
@@ -51,6 +53,7 @@ public class Basic_User  {
 
 	// Instanciation objets métier 
 
+	@JsonView( { UserWithProduct.class } )
 	private Set <Product> products;
 
 

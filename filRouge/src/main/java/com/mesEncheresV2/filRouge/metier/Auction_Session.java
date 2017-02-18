@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.mesEncheresV2.filRouge.metier.Basic_User.Basic_All;
 import com.mesEncheresV2.filRouge.utils.JsonPageable;
 
 
@@ -26,6 +27,7 @@ public class Auction_Session {
 	// instanciation objets métier
 
 
+	
 	private Product products;
 	private Set<Basic_User> encherisseurs;
 

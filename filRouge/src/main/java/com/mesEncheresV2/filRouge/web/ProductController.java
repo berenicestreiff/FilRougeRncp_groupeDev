@@ -1,29 +1,29 @@
 package com.mesEncheresV2.filRouge.web;
 
-import java.util.List;
-import java.util.Set;
+
+
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpClientErrorException;
-
 import com.fasterxml.jackson.annotation.JsonView;
-import com.mesEncheresV2.filRouge.metier.Auction_Session;
 import com.mesEncheresV2.filRouge.metier.Basic_User;
+import com.mesEncheresV2.filRouge.metier.Basic_User.UserWithProduct;
 import com.mesEncheresV2.filRouge.metier.Offer;
+import com.mesEncheresV2.filRouge.metier.Offer.OfferWithProduct;
 import com.mesEncheresV2.filRouge.metier.Product;
+import com.mesEncheresV2.filRouge.metier.Product.ProductAll;
 import com.mesEncheresV2.filRouge.metier.Product.ProductOnly;
 import com.mesEncheresV2.filRouge.metier.Tag;
-import com.mesEncheresV2.filRouge.metier.Tag.TagOnly;
+import com.mesEncheresV2.filRouge.metier.Tag.TagWithProduct;
 import com.mesEncheresV2.filRouge.repositories.BasicUser_Repository;
 import com.mesEncheresV2.filRouge.repositories.Offer_Repository;
 import com.mesEncheresV2.filRouge.repositories.Product_Repository;
@@ -36,9 +36,6 @@ import com.mesEncheresV2.filRouge.utils.JsonPageable;
 @RequestMapping(value="/product")
 public class ProductController
 {
-
-
-
 
 	// Mes Getters and Setters de repository
 
@@ -78,24 +75,32 @@ public class ProductController
 	public void setTag_Repository(Tag_Repository tag_Repository) {
 		Tag_Repository = tag_Repository;}
 	
-	// 	associer une offr à un product dans un POST
+
+	// ===========================
+	// ========== POST==========
+	// ===========================
+
+
+	// 	associer une offre à un product 
 	
 	@RequestMapping(value="/associeroffer/{produitId:[0-9]+}/{offerId:[0-9]+}", method = RequestMethod.POST, produces="application/json")
 	@ResponseBody
+	@JsonView(OfferWithProduct.class)
 	public void addOneProductByOffer(
 			@PathVariable("produitId") int produitId,
 			@PathVariable("offerId") int offerId)
 	{
 		Product p = this.getProductRepository().findOne(produitId);
-		Offer o = this.getOffer_Repository().findOne(offerId);
+		Offer o = this.getOfferRepository().findOne(offerId);
 		p.addOffer(o);
 		this.getProductRepository().save(p);
 	}
 
-	// associer un tag à un produit
+	// associer un tag à un produit - POST
 
 	@RequestMapping(value="/associertag/{produitId:[0-9]+}/{tagId:[0-9]+}", method = RequestMethod.POST, produces="application/json")
 	@ResponseBody
+	@JsonView(TagWithProduct.class)
 	public void addOneProductByTags(
 			@PathVariable("produitId") int produitId,
 			@PathVariable("tagId") int tagId)
@@ -105,20 +110,15 @@ public class ProductController
 		p.addTag(t);
 		this.getProductRepository().save(p);
 	}
-
-	@RequestMapping(value="/deassociertag/{productId:[0-9,]+}/{tagId:[0-9]+}", method=RequestMethod.POST, produces="application/json")
-	@ResponseBody
-	public void removeProductByTag(
-			@PathVariable("productId") int productId,
-			@PathVariable("tagId") int tagId) {
-		Product p = this.getProductRepository().findOne(productId);
-		Tag t = this.getTag_Repository().findOne(tagId);
-		p.removeTag(t);
-		this.getProductRepository().save(p);
-	}
 	
-	@RequestMapping(method = RequestMethod.POST, produces="application/json")
+
+
+	// associer un user à un produit - POST
+	
+	
+	@RequestMapping(value="/associeruser/{produitId:[0-9]+}/{userId:[0-9]+}",method = RequestMethod.POST, produces="application/json")
 	@ResponseBody
+	@JsonView(UserWithProduct.class)
 	public Product addOne(@RequestBody Product products)
 	{
 		if (products.getSeller() == null)
@@ -131,28 +131,40 @@ public class ProductController
 	}
 
 
+	// ===========================
+	// ========== GET ==========
+	// ===========================
+
 	//Lister des Porduits
 
-	@RequestMapping(method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="listeAllProduct",method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
-	//@JsonView(TagOnly.class)
+	@JsonView(ProductAll.class)
 	public Page<Product> liste(@PageableDefault(page=0, size=10) Pageable pageRequest) {
 		return JsonPageable.fromPage(this.getProductRepository().findAll(pageRequest));
 	}
-
-	// Remove
-
-	@RequestMapping(value="/{id:[0-9]+}", method=RequestMethod.DELETE, produces="application/json")
+	
+	// Lister un produit
+	@RequestMapping(value="ListeOneproduct/{id:[0-9]+}", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
-	//@JsonView(TagOnly.class)
-	public void removeOne(@PathVariable("id") int id) {
-		this.getProductRepository().delete(id);
+	@JsonView(ProductOnly.class)
+	public Product listeOneProduct(@PathVariable("id") int id){
+		return this.getProductRepository().findOne(id);
 	}
+	
+	
+	
+
+	// ===========================
+	// ========== UPDATE ==========
+	// ===========================
+
 
 	//Update product
 
 	@RequestMapping(method=RequestMethod.PUT, produces="application/json")
 	@ResponseBody
+	@JsonView(ProductOnly.class)
 	public Product updateOne(@RequestBody Product products)
 	{
 		Product old = this.getProductRepository().findOne(products.getId());
@@ -173,21 +185,52 @@ public class ProductController
 		}
 	}
 
+	// ===========================//
+	// ========== REMOVE==========//
+	// ===========================//
 
 
+	// RemoveProductOnly
 
-	@RequestMapping(value = "/demarrer/{id:[0-9]+}", method = RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="removeOneProduct/{id:[0-9]+}", method=RequestMethod.DELETE, produces="application/json")
 	@ResponseBody
-	public Product demarrer(@PathVariable("id") int id)
-	{
-		Product products = this.getProductRepository().findOne(id);
-		if (products.getSession() != null)
-			return null;
-		products.setSession(new Auction_Session(0, 0));
-		this.getProductRepository().save(products);
-		return products;
+	public void removeOne(@PathVariable("id") int id) {
+		Product p = this.getProductRepository().findOne(id);
+		if (p==null) return;
+		p.getTags().clear();
+		p.getOffers().clear();
+		this.getProductRepository().save(p);
+		this.getProductRepository().delete(id);
 	}
-
+	
+	//Désassocier un tag d'un produit
+	
+		@RequestMapping(value="/deassociertag/{productId:[0-9,]+}/{tagId:[0-9]+}", method=RequestMethod.POST, produces="application/json")
+		@ResponseBody
+		@JsonView(TagWithProduct.class)
+		public void removeProductByTag(
+				@PathVariable("productId") int productId,
+				@PathVariable("tagId") int tagId) {
+			Product p = this.getProductRepository().findOne(productId);
+			Tag t = this.getTag_Repository().findOne(tagId);
+			p.removeTag(t);
+			this.getProductRepository().save(p);
+		}
+		
+		
+		//Désassocier une offre  d'un produit
+		
+		@JsonView(OfferWithProduct.class)
+			@RequestMapping(value="/deassocieroffer/{productId:[0-9,]+}/{offerId:[0-9]+}", method=RequestMethod.POST, produces="application/json")
+			@ResponseBody
+			public void removeProductByOffer(
+					@PathVariable("productId") int productId,
+					@PathVariable("offerId") int offerId) {
+				Product p = this.getProductRepository().findOne(productId);
+				Offer t = this.getOfferRepository().findOne(offerId);
+				p.removeOffer(t);
+				this.getProductRepository().save(p);
+			}
 
 }
 

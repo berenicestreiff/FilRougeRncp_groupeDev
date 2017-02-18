@@ -9,16 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.apache.logging.log4j.core.config.json.JsonConfiguration;
-
 import com.fasterxml.jackson.annotation.JsonView;
-import com.mesEncheresV2.filRouge.metier.Basic_User.Basic_UserOnly;
 import com.mesEncheresV2.filRouge.utils.JsonPageable;
 
 @Entity
 public class Offer {
 	public static class OfferOnly extends JsonPageable.PaginatedResult{}
-
+	public static class OfferWithProduct  extends OfferOnly{}
 
 	@JsonView( { OfferOnly.class } )
 	private int id;
@@ -33,6 +30,7 @@ public class Offer {
 
 	//Instanciation des objets métier
 
+	@JsonView( { OfferWithProduct.class } )
 	private Product products;
 
 

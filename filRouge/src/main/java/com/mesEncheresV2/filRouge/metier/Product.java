@@ -21,6 +21,10 @@ import com.mesEncheresV2.filRouge.utils.JsonPageable;
 @Entity
 public class Product {
 	public static class ProductOnly extends JsonPageable.PaginatedResult {}
+	public static class ProductAll extends ProductOnly {}
+	public static class OfferWithProduct extends ProductOnly {}
+	public static class TagWithProduct extends ProductOnly {}
+	public static class UserWithProduct extends ProductOnly {}
 
 	@JsonView( { ProductOnly.class } )
 	private int id;
@@ -37,10 +41,15 @@ public class Product {
 
 	// Instanciation objets métier 
 
+	@JsonView( { UserWithProduct.class } )
 	private Basic_User seller;
+	@JsonView( { ProductAll.class } )
 	private Auction_Session session;
+	@JsonView( { TagWithProduct.class } )
 	private Set <Tag>tags;
+	@JsonView( { ProductAll.class } )
 	private Photo photos;
+	@JsonView( { OfferWithProduct.class } )
 	private Set <Offer> offers;
 
 	// Getter et setter
@@ -51,26 +60,26 @@ public class Product {
 		return id;}
 	public void setId(int id) {
 		this.id = id;}
-	
+
 	@Column(nullable=false, length=50)
 	public void setDesignation(String designation) {
 		this.designation = designation;}
 	public void setDescription(String description) {
 		this.description = description;}
-	
+
 	@Column(nullable=false, length=200)
 	public String getDescription() {
 		return description;	}
 	public String getDesignation() {
 		return designation;}
 
-	
+
 	@Column(nullable=false, length=10)
 	public int getInitialPrice() {
 		return initialPrice;}
 	public void setInitialPrice(int initialPrice) {
 		this.initialPrice = initialPrice;}
-	
+
 	@Column(nullable=false, length=10)
 	public int getMinimumAuction() {
 		return minimumAuction;}
@@ -114,7 +123,15 @@ public class Product {
 		this.tags = tags;
 	}
 
+
+	// ===========================
+	// =METHODES DE MON CONTROLLER 
+	// ===========================
+
+
+
 	// Ajouter un tag à un product sans doublons
+
 	public void addTag(Tag t){
 		for(Tag tag : this.getTags()){
 			if (tag.getId() == t.getId()){
@@ -124,9 +141,31 @@ public class Product {
 		this.getTags().add(t);
 	}
 	
+	
+	//Remove tags de mes produits
+
 	public void removeTag(Tag t){
 		this.getTags().removeIf(tag->tag.getId()==t.getId());
 	}
+	// Ajouter une offre à un product sans doublons
+
+	public void addOffer(Offer o){
+		for( Offer offer: this.getOffers()){
+			if (offer.getId() == o.getId()){
+				return;
+			}
+		}
+		this.getOffers().add(o);
+	}
+
+	//Remove des offers de mes produits
+
+	public void removeOffer(Offer o){
+		this.getOffers().removeIf(offer->offer.getId()==o.getId());
+	}
+	
+
+
 	// Constructeurs
 
 

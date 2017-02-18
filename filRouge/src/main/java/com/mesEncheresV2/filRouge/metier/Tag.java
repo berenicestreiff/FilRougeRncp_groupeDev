@@ -13,7 +13,8 @@ import com.mesEncheresV2.filRouge.utils.JsonPageable;
 @Entity
 public class Tag  {
 	public static class TagOnly extends JsonPageable.PaginatedResult {}
-
+	public static class TagWithProduct extends TagOnly {}
+	
 	@JsonView( { TagOnly.class } )
 	private int id;
 	@JsonView( { TagOnly.class } )
@@ -22,6 +23,7 @@ public class Tag  {
 	// Instanciation objets métier 
 
 
+	@JsonView( { TagWithProduct.class } )
 	private Set<Product> products;
 
 
