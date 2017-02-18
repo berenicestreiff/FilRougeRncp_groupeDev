@@ -3,13 +3,16 @@ package com.mesEncheresV2.filRouge.metier;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.mesEncheresV2.filRouge.metier.Auction_Session.Auction_SessionOnly;
+
 import com.mesEncheresV2.filRouge.utils.JsonPageable;
 
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Admin_User extends Basic_User {
 	public static class Admin_UserOnly extends JsonPageable.PaginatedResult {}
 

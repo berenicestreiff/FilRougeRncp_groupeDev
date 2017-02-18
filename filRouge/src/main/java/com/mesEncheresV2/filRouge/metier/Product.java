@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -102,16 +103,32 @@ public class Product {
 	public void setOffers(Set<Offer> offers) {
 		this.offers = offers;}
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	public Set<Tag> getTags() {
 		if ( this.tags == null)
 			this.tags = new HashSet<>();
 		return this.tags;
 	}
-	public void setTags(Set<Tag> tags) { this.tags = tags; }
 
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
 
+	// Ajouter un tag à un product sans doublons
+	public void addTag(Tag t){
+		for(Tag tag : this.getTags()){
+			if (tag.getId() == t.getId()){
+				return;
+			}
+		}
+		this.getTags().add(t);
+	}
+	
+	public void removeTag(Tag t){
+		this.getTags().removeIf(tag->tag.getId()==t.getId());
+	}
 	// Constructeurs
+
 
 	public Product(int id, String designation, String description, int initialPrice, int minimumAuction,
 			String fileName, String contentType, long fileSize, String fileHash) {

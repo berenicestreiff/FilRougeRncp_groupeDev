@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.mesEncheresV2.filRouge.utils.JsonPageable;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Basic_User  {
 	public static class Basic_UserOnly extends JsonPageable.PaginatedResult {}
 

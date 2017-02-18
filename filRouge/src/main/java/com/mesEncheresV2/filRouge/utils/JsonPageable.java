@@ -7,25 +7,23 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.mesEncheresV2.filRouge.metier.Admin_User;
-import com.mesEncheresV2.filRouge.metier.Auction_Session;
-import com.mesEncheresV2.filRouge.metier.Basic_User;
-import com.mesEncheresV2.filRouge.metier.Product;
-import com.mesEncheresV2.filRouge.metier.Tag;
-import com.mesEncheresV2.filRouge.repositories.AdminUser_Repository;
-import com.mesEncheresV2.filRouge.repositories.AuctionSession_Repository;
-import com.mesEncheresV2.filRouge.repositories.BasicUser_Repository;
-import com.mesEncheresV2.filRouge.repositories.ProfessionalUser_Repository;
-import com.mesEncheresV2.filRouge.repositories.Tag_Repository;
 
-public class JsonPageable <T> implements Page<T> {
+import com.fasterxml.jackson.annotation.JsonView;
+
+public class JsonPageable<T> implements Page<T> {
 
 	public static class PaginatedResult {}
-
-
+	
+	public static <T2> JsonPageable<T2> fromPage(Page<T2> page) {
+		return new JsonPageable<T2>(page);
+	}
+	
+	public JsonPageable(Page<T> originalPage) {
+		this.originalPage = originalPage;
+	}
+	
 	private Page<T> originalPage;
-
+	
 	@JsonView(PaginatedResult.class)
 	@Override
 	public List<T> getContent() {return originalPage.getContent();}
@@ -81,35 +79,6 @@ public class JsonPageable <T> implements Page<T> {
 
 	@Override
 	public <S> Page<S> map(Converter<? super T, ? extends S> arg0) {return originalPage.map(arg0);}
+	
 
-
-	public static Page<Basic_User> fromPage(BasicUser_Repository findAll) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static Page<Admin_User> fromPage(AdminUser_Repository findAll) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static Page<Tag> fromPage(Tag_Repository findAll) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static Page<Product> fromPage(ProfessionalUser_Repository findAll) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static Page<Auction_Session> fromPage(AuctionSession_Repository findAll) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	}
-
-
-
-
-
+}

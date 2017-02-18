@@ -1,16 +1,8 @@
 package com.mesEncheresV2.filRouge.repositories;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
 import com.mesEncheresV2.filRouge.metier.Tag;
 
-public interface Tag_Repository extends CrudRepository<Tag, Integer> {
-
-	Tag_Repository findAll(Pageable pageRequest);
-
-
-
-
-
-
+public interface Tag_Repository extends PagingAndSortingRepository<Tag, Integer> {
 }

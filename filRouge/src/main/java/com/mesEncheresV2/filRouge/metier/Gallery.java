@@ -35,11 +35,13 @@ public String toString() {
 }
 public Gallery(int id, String name, String description, Date dateAdded) {
 	super(id, name, description, dateAdded);
-	// TODO Auto-generated constructor stub
+
 }
 
 public Gallery() {
 	this(0, "", "", null);
 }
 
+
+	
 }

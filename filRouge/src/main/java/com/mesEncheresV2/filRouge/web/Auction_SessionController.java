@@ -37,9 +37,10 @@ public class Auction_SessionController {
 
 			@RequestMapping(value="/auction_session/",method = RequestMethod.POST, produces="application/json")
 			@ResponseBody
-			public AuctionSession_Repository  addOneSession(@RequestBody Auction_Session auction_Session)
+			public Auction_Session  addOneSession(@RequestBody Auction_Session auction_Session)
 			{
-				return this.getAuctionSession_Repository().save(addOneSession(null));}
+				return this.getAuctionSession_Repository().save(auction_Session);
+				}
 
 			// LISTE DE AUCTION_SESSION
 

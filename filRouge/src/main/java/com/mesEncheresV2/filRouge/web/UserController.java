@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mesEncheresV2.filRouge.metier.Admin_User;
 import com.mesEncheresV2.filRouge.metier.Basic_User;
 import com.mesEncheresV2.filRouge.metier.Professionnal_User;
-import com.mesEncheresV2.filRouge.repositories.AdminUser_Repository;
 import com.mesEncheresV2.filRouge.repositories.BasicUser_Repository;
-import com.mesEncheresV2.filRouge.repositories.ProfessionalUser_Repository;
 import com.mesEncheresV2.filRouge.utils.JsonPageable;
 
 
@@ -30,15 +28,6 @@ public class UserController {
 	//Getters et setters de repository
 
 	@Autowired
-	private AdminUser_Repository adminUserRepository;
-
-
-	public AdminUser_Repository getAdminUserRepository() {
-		return adminUserRepository;}
-	public void setAdminUserRepository(AdminUser_Repository adminUserRepository) {
-		this.adminUserRepository = adminUserRepository;}
-
-	@Autowired
 	private BasicUser_Repository basicUserRepository;
 
 
@@ -47,14 +36,6 @@ public class UserController {
 	public void setBasicUserRepository(BasicUser_Repository basicUserRepository) {
 		this.basicUserRepository = basicUserRepository;}
 
-	@Autowired
-	private ProfessionalUser_Repository professionalUserRepository;
-
-
-	public ProfessionalUser_Repository getProfessionalUserRepository() {
-		return professionalUserRepository;}
-	public void setProfessionalUserRepository(ProfessionalUser_Repository professionalUserRepository) {
-		this.professionalUserRepository = professionalUserRepository;}
 
 	// Methodes findOne sur nos différents types de users
 
@@ -68,13 +49,13 @@ public class UserController {
 	@ResponseBody
 	public Professionnal_User addOneProUser(@RequestBody Professionnal_User  user)
 	{
-		return this.getProfessionalUserRepository().save(user);}
+		return this.getBasicUserRepository().save(user);}
 
 	@RequestMapping(value="/admin",method = RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	public Admin_User addOneAdminUser(@RequestBody Admin_User  user)
 	{
-		return this.getAdminUserRepository().save(user);}
+		return this.getBasicUserRepository().save(user);}
 
 
 
@@ -88,12 +69,6 @@ public class UserController {
 		return JsonPageable.fromPage(this.getBasicUserRepository().findAll(pageRequest));}
 
 
-	@RequestMapping(value="/admin/",method=RequestMethod.GET, produces="application/json")
-	@ResponseBody
-	//@JsonView(TagOnly.class)
-	public Page<Admin_User> listeAdmin(@PageableDefault(page=0, size=10) Pageable pageRequest) {
-		return JsonPageable.fromPage(this.getAdminUserRepository().findAll(pageRequest));}
-
 	//RemoveOne methodes sur les différents types de users
 
 	@RequestMapping(value="/basic/{id:[0-9]+}", method=RequestMethod.DELETE, produces="application/json")
@@ -101,18 +76,6 @@ public class UserController {
 	//@JsonView(TagOnly.class)
 	public void removeOneBasic(@PathVariable("id") int id) {
 		this.getBasicUserRepository().delete(id);}
-
-	@RequestMapping(value="/pro/{id:[0-9]+}", method=RequestMethod.DELETE, produces="application/json")
-	@ResponseBody
-	//@JsonView(TagOnly.class)
-	public void removeOnePro(@PathVariable("id") int id) {
-		this.getProfessionalUserRepository().delete(id);}
-
-	@RequestMapping(value="/admin/{id:[0-9]+}", method=RequestMethod.DELETE, produces="application/json")
-	@ResponseBody
-	//@JsonView(TagOnly.class)
-	public void removeOneAdmin(@PathVariable("id") int id) {
-		this.getAdminUserRepository().delete(id);}
 
 
 	//Update sur les différents types users
@@ -149,7 +112,7 @@ public class UserController {
 	@ResponseBody
 	public Professionnal_User updateOnePro(@RequestBody Professionnal_User user)
 	{
-		Professionnal_User old = this.getProfessionalUserRepository().findOne(user.getId());
+		Professionnal_User old = (Professionnal_User) this.getBasicUserRepository().findOne(user.getId());
 		if (old == null)
 		{
 			return null;
@@ -168,29 +131,27 @@ public class UserController {
 					());
 
 
-			this.getProfessionalUserRepository().save(old);
+			this.getBasicUserRepository().save(old);
 			return old;}
 	}
 	@RequestMapping(value="/admin", method=RequestMethod.PUT, produces="application/json")
 	@ResponseBody
 	public Admin_User updateOneAdmin(@RequestBody Admin_User user)
 	{
-		Admin_User old = this.getAdminUserRepository().findOne(user.getId());
+		Admin_User old = (Admin_User) this.getBasicUserRepository().findOne(user.getId());
 		if (old == null)
 		{
 			return null;
 		}
 		else
 		{
-
-
 			old.setSurname(user.getSurname());
 			old.setPassword(user.getPassword());
 			old.setSurname(user.getSurname());
 			old.setFirstname(user.getFirstname());
 			old.setAdmin_type(user.getAdmin_type());
 
-			this.getAdminUserRepository().save(old);
+			this.getBasicUserRepository().save(old);
 			return old;
 		}
 

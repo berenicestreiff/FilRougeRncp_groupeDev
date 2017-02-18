@@ -63,6 +63,5 @@ public class Tag  {
 	@Override
 	public String toString() {
 		return "Tags [id=" + id + ", tag_name=" + tag_name + "]";}
-
 }
 
